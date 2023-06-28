@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список дел</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"></head>
+<body>
+<div class="title">
+    <h1>Список дел</h1>
+</div>
+<div class="TaskInputAndButtons">
+    <div class="input" >
+        <input class="inputTusk" type="text" id="input" placeholder="новая задача">
+    </div>
+    <div class="addTask">
+        <button class="addTaskButton" id="add" onclick="addTodo()">добавить новое дело</button>
+    </div>
+    <div class="clearAll">
+        <button class="addACButton" id="allClear">удалить все дела</button>
+    </div>
+    <div class="deleteCompleted">
+        <button class="deleteCompletedButton" id="delete">удалить выполненные дела</button>
+    </div>
+</div>
+<div class="list" id="list">
+    <ul id="todoListContainer">
+
+    </ul>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>

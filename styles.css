@@ -1,0 +1,10 @@
+.title {
+    display: flex;
+    justify-content: center;
+}
+
+.TaskInputAndButtons{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
