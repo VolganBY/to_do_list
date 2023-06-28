@@ -18,15 +18,18 @@ function deleteTodo(index) {
 function renderTodoList() {
     let todoListContainer = document.getElementById("todoListContainer");
     todoListContainer.innerHTML = "";
-    todoList.forEach(function(todo, index) {
+    todoList.forEach(function (todo, index) {
         let listItem = document.createElement("li");
         listItem.innerText = todo;
         let deleteButton = document.createElement("button");
         deleteButton.innerText = "Удалить";
-        deleteButton.addEventListener("click", function() {
+        deleteButton.addEventListener("click", function () {
             deleteTodo(index);
         });
         listItem.appendChild(deleteButton);
         todoListContainer.appendChild(listItem);
     });
 }
+
+
+let Volgan
