@@ -11,6 +11,7 @@ addTodo = () => {
     todoInput.value = "";
     displayTodoList();
 }
+
 displayTodoList = () => {
     let todoListContainer = document.getElementById("todoListContainer");
     todoListContainer.innerHTML = "";
@@ -38,10 +39,10 @@ deleteTodo = (index) => {
     todoList.splice(index, 1);
     displayTodoList();
 }
+
  completeTodo = (index) => {
     if (todoList[index].completed) {
         todoList[index].completed = true;
-        let listItem = document.getElementsByTagName("li")[index];
         displayTodoList()
     } else {
         todoList[index].completed = false;
