@@ -8,18 +8,18 @@
 </head>
 <body>
 <div class="title">
-    <h1>Список дел</h1>
+    <h1 class="title-text">Список дел</h1>
 </div>
 <div class="TaskInputAndButtons">
     <div class="input">
-        <input class="inputTusk" type="text" id="input" placeholder="новая задача">
+        <input class="task-input" type="text" id="new-task" placeholder="новая задача">
     </div>
     <div class="addTask">
-        <button class="addTaskButton" id="add" onclick="addTodo()">добавить новое дело</button>
+        <button class="add-task-button" id="add-button" onclick="addTodo()">добавить новое дело</button>
     </div>
 </div>
 <div class="list" id="list">
-    <ul id="todoListContainer"></ul>
+    <div id="todo-list-container"></div>
 </div>
 <script src="script.js"></script>
 </body>

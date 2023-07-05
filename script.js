@@ -1,52 +1,64 @@
 let todoList = [];
+let todoListContainer = document.getElementById("todo-list-container");
+let newTask = document.getElementById("new-task");
 
-addTodo = () => {
-    let todoInput = document.getElementById("input");
-    let newTodo = todoInput.value;
-    if (newTodo.trim() === "") {
+const addTodo = () => {
+    if (newTask.value.trim() === "") {
         alert("Вы ничего не ввели");
-        return;
-    }
-    todoList.push(newTodo);
-    todoInput.value = "";
-    displayTodoList();
-}
-
-displayTodoList = () => {
-    let todoListContainer = document.getElementById("todoListContainer");
-    todoListContainer.innerHTML = "";
-    todoList.forEach(function (todo, index) {
-        let listItem = document.createElement("li");
-        listItem.innerText = todo;
-        let deleteButton = document.createElement("button");
-        deleteButton.innerText = "Удалить";
-        deleteButton.addEventListener("click",  () => {
-            deleteTodo(index);
-        });
-        let completeButton = document.createElement("button");
-        completeButton.innerText = "Выполнено";
-        completeButton.addEventListener("click",  () => {
-            completeTodo(index);
-        });
-
-        listItem.appendChild(deleteButton);
-        listItem.appendChild(completeButton);
-        todoListContainer.appendChild(listItem);
-    });
-}
-
-deleteTodo = (index) => {
-    todoList.splice(index, 1);
-    displayTodoList();
-}
-
- completeTodo = (index) => {
-    if (todoList[index].completed) {
-        todoList[index].completed = true;
-        displayTodoList()
     } else {
-        todoList[index].completed = false;
-        let listItem = document.getElementsByTagName("li")[index];
-        listItem.style.color = "green";
+        let task = {name: newTask.value, status: false, id: todoList.length}
+        todoList.push(task);
+        saveTodoList();
+        printTask(task);
+        newTask.value = '';
     }
 }
+const deleteTask = (id) => {
+    todoList.splice(id, 1);
+    saveTodoList();
+    todoListContainer.innerHTML = '';
+    for (let i = id; i < todoList.length; i++) {
+        todoList[i].id = i;
+    }
+    printList();
+}
+
+const completeTodo = (id) => {
+    todoList[id].status = !todoList[id].status;
+    saveTodoList();
+    todoListContainer.innerHTML = '';
+    printList();
+}
+
+const printList = () => {
+    todoListContainer.innerHTML = '';
+    todoList.forEach(printTask);
+}
+
+const printTask = (task) => {
+    todoListContainer.innerHTML +=
+        `
+        <div class="task-container">
+            <div class="task-name ${task.status ? 'completed-task' : ''}">${task.name}</div>
+            <button onclick="deleteTask(${task.id})" class="delete-button">Удалить дело</button>
+            <button onclick="completeTodo(${task.id})" class="complete-button">Выполнено</button>
+            <div style="border-bottom: 1px solid black; margin-top: 10px">
+            
+            </div>
+        </div>
+    `
+}
+const saveTodoList = () => {
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+}
+
+const loadTodoList = () => {
+    const savedTodoList = localStorage.getItem("todoList");
+    if (savedTodoList) {
+        todoList = JSON.parse(savedTodoList);
+        printList();
+    }
+}
+
+loadTodoList();
+printList();

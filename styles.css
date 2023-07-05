@@ -3,7 +3,71 @@
     justify-content: center;
 }
 
+.title-text {
+    font-family: Tahoma;
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .TaskInputAndButtons{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+}
+
+.task-input {
+    height: 29px;
+}
+
+#new-task {
+    margin-bottom: 10px;
+}
+
+#add-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+#add-button:hover {
+    background-color: #45a049;
+}
+
+.task-container {
+    margin-bottom: 10px;
+}
+
+.task-name {
+    color: black;
+}
+
+.completed-task {
+    color: green;
+}
+
+
+.delete-button {
+    background-color: #f44336;
+    color: white;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.complete-button {
+    background-color: green;
+    color: white;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #d32f2f;
+}
+
+.complete-button:hover {
+    background-color: greenyellow;
 }
