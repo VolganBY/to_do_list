@@ -2,35 +2,36 @@ let todoList = [];
 let todoListContainer = document.getElementById("todo-list-container");
 let newTask = document.getElementById("new-task");
 
-const addTodo = () => {
+const addTask = () => {
     if (newTask.value.trim() === "") {
         alert("Вы ничего не ввели");
     } else {
-        let task = {name: newTask.value, status: false, id: todoList.length}
+        let task = {name: newTask.value, status: false, id: todoList.length};
         todoList.push(task);
         saveTodoList();
         printTask(task);
         newTask.value = '';
     }
 }
+
 const deleteTask = (id) => {
     todoList.splice(id, 1);
     saveTodoList();
     todoListContainer.innerHTML = '';
-    for (let i = id; i < todoList.length; i++) {
-        todoList[i].id = i;
-    }
-    printList();
+    todoList.forEach((task, index) => {
+        task.id = index;
+    });
+    clearList();
 }
 
 const completeTodo = (id) => {
     todoList[id].status = !todoList[id].status;
     saveTodoList();
     todoListContainer.innerHTML = '';
-    printList();
+    clearList();
 }
 
-const printList = () => {
+const clearList = () => {
     todoListContainer.innerHTML = '';
     todoList.forEach(printTask);
 }
@@ -42,12 +43,10 @@ const printTask = (task) => {
             <div class="task-name ${task.status ? 'completed-task' : ''}">${task.name}</div>
             <button onclick="deleteTask(${task.id})" class="delete-button">Удалить дело</button>
             <button onclick="completeTodo(${task.id})" class="complete-button">Выполнено</button>
-            <div style="border-bottom: 1px solid black; margin-top: 10px">
-            
-            </div>
         </div>
     `
 }
+
 const saveTodoList = () => {
     localStorage.setItem("todoList", JSON.stringify(todoList));
 }
@@ -56,9 +55,9 @@ const loadTodoList = () => {
     const savedTodoList = localStorage.getItem("todoList");
     if (savedTodoList) {
         todoList = JSON.parse(savedTodoList);
-        printList();
+        clearList();
     }
 }
 
 loadTodoList();
-printList();
+clearList();

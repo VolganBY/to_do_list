@@ -9,7 +9,7 @@
     flex-wrap: wrap;
 }
 
-.TaskInputAndButtons{
+.task-input-buttons{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -36,7 +36,9 @@
 }
 
 .task-container {
-    margin-bottom: 10px;
+    margin: 10px 0 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid black;
 }
 
 .task-name {
@@ -71,3 +73,5 @@
 .complete-button:hover {
     background-color: greenyellow;
 }
+
+#border-b
