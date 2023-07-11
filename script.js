@@ -1,10 +1,10 @@
 let todoList = [];
-let todoListContainer = document.getElementById("todo-list-container");
-let newTask = document.getElementById("new-task");
+let todoListContainer = document.getElementById('todo-list-container');
+let newTask = document.getElementById('new-tas');
 
 const addTask = () => {
-    if (newTask.value.trim() === "") {
-        alert("Вы ничего не ввели");
+    if (newTask.value.trim() === '') {
+        alert('Вы ничего не ввели');
     } else {
         let task = {name: newTask.value, status: false, id: todoList.length};
         todoList.push(task);
@@ -12,7 +12,7 @@ const addTask = () => {
         printTask(task);
         newTask.value = '';
     }
-}
+};
 
 const deleteTask = (id) => {
     todoList.splice(id, 1);
@@ -22,19 +22,19 @@ const deleteTask = (id) => {
         task.id = index;
     });
     clearList();
-}
+};
 
 const completeTodo = (id) => {
     todoList[id].status = !todoList[id].status;
     saveTodoList();
     todoListContainer.innerHTML = '';
     clearList();
-}
+};
 
 const clearList = () => {
     todoListContainer.innerHTML = '';
     todoList.forEach(printTask);
-}
+};
 
 const printTask = (task) => {
     todoListContainer.innerHTML +=
@@ -45,19 +45,19 @@ const printTask = (task) => {
             <button onclick="completeTodo(${task.id})" class="complete-button">Выполнено</button>
         </div>
     `
-}
+};
 
 const saveTodoList = () => {
-    localStorage.setItem("todoList", JSON.stringify(todoList));
-}
+    localStorage.setItem('todoList', JSON.stringify(todoList));
+};
 
 const loadTodoList = () => {
-    const savedTodoList = localStorage.getItem("todoList");
+    const savedTodoList = localStorage.getItem('todoList');
     if (savedTodoList) {
         todoList = JSON.parse(savedTodoList);
         clearList();
     }
-}
+};
 
 loadTodoList();
 clearList();
